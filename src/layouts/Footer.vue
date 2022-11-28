@@ -1,5 +1,5 @@
 <template>
-  <div>footer</div>
+  <div>Luke-antDesign-vue-admin</div>
 </template>
 
 <script>
