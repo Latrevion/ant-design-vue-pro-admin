@@ -3,7 +3,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Step1",
+  components: {},
+};
 </script>
 
 <style lang="less" scoped></style>

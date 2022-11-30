@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/user",
+    hideInMenu: true,
     component: () =>
       import(/*webpackChunkName:'layout' */ "../layouts/UserLayout.vue"),
     children: [
@@ -41,11 +42,13 @@ const routes = [
       {
         path: "/dashboard",
         name: "dashboard",
+        meta: { icon: "dashboard", title: "仪表盘" },
         component: { render: (h) => h("router-view") },
         children: [
           {
             path: "/dashboard/analysis",
             name: "analysis",
+            meta: { title: "分析页" },
             component: () =>
               import(
                 /*webpackChunkName:'layout' */ "../views/DashBoard/Analysis.vue"
@@ -56,11 +59,13 @@ const routes = [
       {
         path: "/form",
         name: "form",
+        meta: { icon: "form", title: "表单页" },
         component: { render: (h) => h("router-view") },
         children: [
           {
             path: "/form/basic-form",
             name: "basicform",
+            meta: { title: "基础表单" },
             component: () =>
               import(
                 /*webpackChunkName:'form' */ "../views/Forms/BasicForm.vue"
@@ -69,17 +74,17 @@ const routes = [
           {
             path: "/form/step-form",
             name: "stepform",
+            hideChildrenInMenu: true,
+            meta: { title: "分步表单" },
             component: () =>
-              import(
-                /*webpackChunkName:'form' */ "../views/Forms/StepForm/index.vue"
-              ),
+              import(/*webpackChunkName:'form' */ "../views/Forms/StepForm"),
             children: [
               {
                 path: "/form/step-form",
                 redirect: "/form/step-form/info",
               },
               {
-                path: "/form/step-from/info",
+                path: "/form/step-form/info",
                 name: "info",
                 component: () =>
                   import(
@@ -111,6 +116,7 @@ const routes = [
   {
     path: "*",
     name: "404",
+    hideInMenu: true,
     component: () =>
       import(/*webpackChunkName:'exception' */ "../views/NotFound.vue"),
   },

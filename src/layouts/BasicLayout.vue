@@ -7,9 +7,10 @@
         :trigger="null"
         v-model="collapsed"
         collapsible
+        width="256px"
       >
         <div class="logo">Luke Antd Vue Admin</div>
-        <SideMenuVue></SideMenuVue>
+        <SideMenuVue :theme="navTheme"></SideMenuVue>
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">

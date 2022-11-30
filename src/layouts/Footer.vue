@@ -1,5 +1,5 @@
 <template>
-  <div>Luke-antDesign-vue-admin</div>
+  <div>Luke Antd Vue Admin</div>
 </template>
 
 <script>

@@ -1,9 +1,12 @@
 <template>
-  <div>404 NotFound.Vue</div>
+  <div>404</div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "NotFound",
+  components: {},
+};
 </script>
 
-<style lang="less" scoped></style>
+<style scoped></style>
