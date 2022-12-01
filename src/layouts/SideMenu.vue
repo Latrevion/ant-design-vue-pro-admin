@@ -28,6 +28,7 @@
 
 <script>
 import SubMenu from "./SubMenu.vue";
+import { check } from "../utils/auth";
 
 export default {
   components: {
@@ -63,7 +64,11 @@ export default {
     //获取菜单数据
     getMenuData(routes = [], parentKeys = [], selectedKeys) {
       const menuData = [];
-      routes.forEach((item) => {
+      for (let item of routes) {
+        if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+          break;
+        }
+
         if (item.name && !item.hideInMenu) {
           this.openKeysMap[item.path] = parentKeys;
           this.selectedKeysMap[item.path] = [selectedKeys || item.path];
@@ -91,7 +96,7 @@ export default {
             ...this.getMenuData(item.children, [...parentKeys, item.path])
           );
         }
-      });
+      }
       return menuData;
     },
   },

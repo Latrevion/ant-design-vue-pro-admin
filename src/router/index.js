@@ -2,6 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Nprogress from "nprogress";
 import "nprogress/nprogress.css";
+import findLast from "lodash/findLast";
+import { check, isLogin } from "../utils/auth";
+import { notification } from "ant-design-vue";
 
 Vue.use(VueRouter);
 
@@ -32,6 +35,7 @@ const routes = [
   },
   {
     path: "/",
+    meta: { authority: ["admin", "user"] },
     component: () =>
       import(/*webpackChunkName:'layout' */ "../layouts/BasicLayout.vue"),
     children: [
@@ -59,7 +63,7 @@ const routes = [
       {
         path: "/form",
         name: "form",
-        meta: { icon: "form", title: "表单页" },
+        meta: { icon: "form", title: "表单页", authority: ["admin"] },
         component: { render: (h) => h("router-view") },
         children: [
           {
@@ -115,6 +119,13 @@ const routes = [
   },
   {
     path: "*",
+    name: "403",
+    hideInMenu: true,
+    component: () =>
+      import(/*webpackChunkName:'exception' */ "../views/Forbidden.vue"),
+  },
+  {
+    path: "*",
     name: "404",
     hideInMenu: true,
     component: () =>
@@ -131,6 +142,23 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     Nprogress.start();
+  }
+  const record = findLast(to.matched, (record) => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login",
+      });
+    } else if (to.path !== "/403") {
+      notification.error({
+        message: "403",
+        description: "你没有权限访问，请联系管理员",
+      });
+      next({
+        path: "/403",
+      });
+    }
+    Nprogress.done();
   }
   next();
 });
