@@ -19,7 +19,7 @@ module.exports = defineConfig({
           if (req.headers.accept.indexOf("html") !== -1) {
             console.log("Skipping proxy for browser request.");
             return "/index.html";
-          } else {
+          } else if (process.env.MOCk !== "none") {
             const name = req.path.split("/api/")[1].split("/").join("_");
             const mock = require(`./mock/${name}`);
             const result = mock(req.method);
@@ -32,4 +32,3 @@ module.exports = defineConfig({
     },
   },
 });
-  
