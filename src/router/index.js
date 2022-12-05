@@ -96,7 +96,7 @@ const routes = [
                   ),
               },
               {
-                path: "/form/step-from/confirm",
+                path: "/form/step-form/confirm",
                 name: "confirm",
                 component: () =>
                   import(
@@ -104,7 +104,7 @@ const routes = [
                   ),
               },
               {
-                path: "/form/step-from/result",
+                path: "/form/step-form/result",
                 name: "result",
                 component: () =>
                   import(

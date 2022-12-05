@@ -1,13 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import Vuex from "vuex";
+
 import { Button, Layout, Icon, Drawer, Radio, Menu ,Form,Input} from "ant-design-vue";
 import Authorized from "./components/Authorized";
 import Auth from "./Directives/auth.js";
+import store from "./store/index.js";
 
 Vue.config.productionTip = false;
-Vue.use(Vuex);
 Vue.use(Button);
 Vue.use(Layout);
 Vue.use(Icon);
@@ -21,5 +21,6 @@ Vue.use(Input);
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
