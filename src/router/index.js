@@ -118,7 +118,7 @@ const routes = [
     ],
   },
   {
-    path: "*",
+    path: "/403",
     name: "403",
     hideInMenu: true,
     component: () =>

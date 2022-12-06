@@ -19,6 +19,10 @@ Vue.use(Auth);
 Vue.use(Form);
 Vue.use(Input);
 Vue.use(Select);
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/c/font_3812603_az4u7yc3u5v.js',
+});
+Vue.component('IconFont', IconFont); 
 
 new Vue({
   router,
