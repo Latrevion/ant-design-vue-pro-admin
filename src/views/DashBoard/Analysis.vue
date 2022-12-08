@@ -1,12 +1,13 @@
 <template>
   <div>
+    {{$t('message')['app.dashboard.analysis.timeLabel']}}:
+    <a-date-picker></a-date-picker>
     <ChartVue :options="options" style="height: 400px"></ChartVue>
   </div>
 </template>
 
 <script>
 import ChartVue from "@/components/Chart.vue";
-import axios from "axios";
 import request from "@/utils/request";
 
 export default {
